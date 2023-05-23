@@ -581,7 +581,10 @@ class PredatorEaterEaterEater extends creatures{
             var Pr = new PredatorEaterEaterEater(newX, newY, this.index);
             predatorEaterEaterEaterArr.push(Pr);
             matrix[newY][newX] = 6;
-            this.energy = 5;
+            if (season == 1){
+                this.energy = 5;
+            }
+            //this.energy = 5;
         }
         else if (this.energy <= 0){
             this.die()
@@ -692,7 +695,7 @@ function draw() {
 }
 
 
-function makeWinter(){
+function seasonChange(){
     if(season == 0){
         season = 1
     }
@@ -700,5 +703,5 @@ function makeWinter(){
         season = 0
     }
 }
-
-document.getElementById("season0").addEventListener("click", season)
+var seasonButton = document.getElementById("season0")
+seasonButton.addEventListener("click", seasonChange )
