@@ -77,8 +77,8 @@ class creatures{
          [this.x - 1, this.y + 1],
          [this.x    , this.y + 1],
          [this.x + 1, this.y + 1]
-         ];
-     }
+        ];
+    }
 }
 
 class Grass extends creatures{
@@ -647,6 +647,15 @@ function setup(){
     createCanvas(matrix.length * side, matrix.length * side);
 }
 
+var grassNum
+var predatorNum
+var grassEaterNum
+var predatorEaterNum
+var predatorEaterEaterNum
+var predatorEaterEaterEaterNum
+
+
+
 function draw() {
     for (var y = 0; y < matrix.length; y++) {
         for (var x = 0; x < matrix[y].length; x++) {
@@ -692,6 +701,19 @@ function draw() {
     for (var i in predatorEaterEaterEaterArr){
         predatorEaterEaterEaterArr[i].mul();
     }
+    grassNum = grassArr.length
+    grassEaterNum = grassEaterArray.length
+    predatorNum = predatorArr.length
+    predatorEaterNum = predatorEaterArr.length
+    predatorEaterEaterNum = predatorEaterEaterArr.length
+    predatorEaterEaterEaterNum = predatorEaterEaterEaterArr.length
+
+    document.getElementById("grass").innerHTML = grassNum
+    document.getElementById("grassEater").innerHTML = grassEaterNum
+    document.getElementById("predator").innerHTML = predatorNum
+    document.getElementById("predatorEater").innerHTML = predatorEaterNum
+    document.getElementById("predatorEaterEater").innerHTML = predatorEaterEaterNum
+    document.getElementById("predatorEaterEaterEater").innerHTML = predatorEaterEaterEaterNum
 }
 
 
