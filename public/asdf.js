@@ -600,7 +600,7 @@ class PredatorEaterEaterEater extends creatures{
         }
         else{
             this.energy--;
-            this.move()
+            this.move();
         }
     }
     mul(){
@@ -616,7 +616,6 @@ class PredatorEaterEaterEater extends creatures{
             if (season == 1){
                 this.energy = 5;
             }
-            //this.energy = 5;
         }
         else if (this.energy <= 0){
             this.die()
@@ -653,27 +652,27 @@ function setup(){
     for(var y = 0; y < matrix.length; y++){
         for (var x = 0; x < matrix[y].length; x++){
             if (matrix[y][x] == 1) {
-                var grass=new Grass(x,y)
-                grassArr.push(grass)
+                var grass=new Grass(x,y);
+                grassArr.push(grass);
             }  
             else if (matrix[y][x] == 2){
-                var grassE=new GrassEater(x,y)
+                var grassE=new GrassEater(x,y);
                 grassEaterArray.push(grassE);
             }
             else if (matrix[y][x] == 3){
-                var pred=new Predator(x,y)
+                var pred=new Predator(x,y);
                 predatorArr.push(pred);
             }
             else if (matrix[y][x] == 4){
-                var predE=new PredatorEater(x,y)
+                var predE=new PredatorEater(x,y);
                 predatorEaterArr.push(predE);
             }
             else if (matrix[y][x] == 5){
-                var predEE=new PredatorEaterEater(x,y)
+                var predEE=new PredatorEaterEater(x,y);
                 predatorEaterEaterArr.push(predEE);
             }
             else if (matrix[y][x] == 6){
-                var predEEE = new PredatorEaterEaterEater(x,y)
+                var predEEE = new PredatorEaterEaterEater(x,y);
                 predatorEaterEaterEaterArr.push(predEEE);
             }
         }  
@@ -681,14 +680,14 @@ function setup(){
     createCanvas(matrix.length * side, matrix.length * side);
 }
 
-var grassNum
-var predatorNum
-var grassEaterNum
-var predatorEaterNum
-var predatorEaterEaterNum
-var predatorEaterEaterEaterNum
+var grassNum;
+var predatorNum;
+var grassEaterNum;
+var predatorEaterNum;
+var predatorEaterEaterNum;
+var predatorEaterEaterEaterNum;
 
-var counts = []
+var counts = [];
 
 function draw() {
     for (var y = 0; y < matrix.length; y++) {
@@ -738,49 +737,49 @@ function draw() {
     for (var i in predatorEaterEaterEaterArr){
         predatorEaterEaterEaterArr[i].mul();
     }
-    grassNum = grassArr.length
-    grassEaterNum = grassEaterArray.length
-    predatorNum = predatorArr.length
-    predatorEaterNum = predatorEaterArr.length
-    predatorEaterEaterNum = predatorEaterEaterArr.length
-    predatorEaterEaterEaterNum = predatorEaterEaterEaterArr.length
+    grassNum = grassArr.length;
+    grassEaterNum = grassEaterArray.length;
+    predatorNum = predatorArr.length;
+    predatorEaterNum = predatorEaterArr.length;
+    predatorEaterEaterNum = predatorEaterEaterArr.length;
+    predatorEaterEaterEaterNum = predatorEaterEaterEaterArr.length;
 
-    document.getElementById("grass").innerHTML = grassNum
-    document.getElementById("grassEater").innerHTML = grassEaterNum
-    document.getElementById("predator").innerHTML = predatorNum
-    document.getElementById("predatorEater").innerHTML = predatorEaterNum
-    document.getElementById("predatorEaterEater").innerHTML = predatorEaterEaterNum
-    document.getElementById("predatorEaterEaterEater").innerHTML = predatorEaterEaterEaterNum
+    document.getElementById("grass").innerHTML = grassNum;
+    document.getElementById("grassEater").innerHTML = grassEaterNum;
+    document.getElementById("predator").innerHTML = predatorNum;
+    document.getElementById("predatorEater").innerHTML = predatorEaterNum;
+    document.getElementById("predatorEaterEater").innerHTML = predatorEaterEaterNum;
+    document.getElementById("predatorEaterEaterEater").innerHTML = predatorEaterEaterEaterNum;
 
-    counts = [grassNum, grassEaterNum, predatorNum, predatorEaterNum, predatorEaterEaterNum, predatorEaterEaterEaterNum]
+    counts = [grassNum, grassEaterNum, predatorNum, predatorEaterNum, predatorEaterEaterNum, predatorEaterEaterEaterNum];
 }
 
-var seasonShow = document.getElementById("season1")
-var weatherShow = document.getElementById("weather1")
+var seasonShow = document.getElementById("season1");
+var weatherShow = document.getElementById("weather1");
 
 function seasonChange(){
     if(season == 0){
-        season = 1
-        seasonShow.innerHTML = "summer"
+        season = 1;
+        seasonShow.innerHTML = "summer";
     }
     else{
-        season = 0
-        seasonShow.innerHTML = "winter"
+        season = 0;
+        seasonShow.innerHTML = "winter";
     }
 }
 function weatherChange(){
     if(weather == 0){
-        weather = 1
-        weatherShow.innerHTML = "rain"
+        weather = 1;
+        weatherShow.innerHTML = "rain";
     }
     else{
-        weather = 0
-        weatherShow.innerHTML = "sunny"
+        weather = 0;
+        weatherShow.innerHTML = "sunny";
     }
 }
 
-var seasonButton = document.getElementById("season0")
-seasonButton.addEventListener("click", seasonChange)
+var seasonButton = document.getElementById("season0");
+seasonButton.addEventListener("click", seasonChange);
 
-var weatherButton = document.getElementById("weather0")
-weatherButton.addEventListener("click", weatherChange)
+var weatherButton = document.getElementById("weather0");
+weatherButton.addEventListener("click", weatherChange);
