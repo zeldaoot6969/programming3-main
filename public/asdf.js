@@ -100,7 +100,7 @@ class Grass extends creatures{
         this.multiply++;
         var emptyCells = this.chooseCell(0);
         var newCell = random(emptyCells);
-        if(newCell && this.multiply >= 5){
+        if(newCell && this.multiply >= 5 && weather == 0){
             var newX = newCell[0];
             var newY = newCell[1];
             matrix[newY][newX] = 1;
@@ -109,7 +109,15 @@ class Grass extends creatures{
             grassArr.push(newGrass);
             this.multiply = 0;
         }
+        else if(newCell && this.multiply >= 2 && weather == 1){
+            var newX = newCell[0];
+            var newY = newCell[1];
+            matrix[newY][newX] = 1;
  
+            var newGrass = new Grass(newX, newY, 1);
+            grassArr.push(newGrass);
+            this.multiply = 0;
+        }
     }    
      
 }
@@ -191,7 +199,12 @@ class GrassEater extends creatures{
             var grE = new GrassEater(newX, newY, this.index);
             grassEaterArray.push(grE);
             matrix[newY][newX] = 2;
-            this.energy = 3;
+            if (weather == 1){
+                this.energy = 5;
+            }
+            else{
+                this.energy = 3;
+            }
         }
         else if (this.energy <= 0){
             this.die()
@@ -290,7 +303,12 @@ class Predator extends creatures{
             var Pr = new Predator(newX, newY, this.index);
             predatorArr.push(Pr);
             matrix[newY][newX] = 3;
-            this.energy = 5;
+            if (weather == 1){
+                this.energy = 5;
+            }
+            else{
+                this.energy = 15;
+            }
         }
         else if (this.energy <= 0){
             this.die()
@@ -344,6 +362,14 @@ class PredatorEater extends creatures{
         var cells = this.chooseCell(0);
         var newCell = random(cells);
         if (newCell){
+            if(season == 1){
+                matrix[this.y][this.x] = 0;
+                var newX = newCell[0];
+                var newY = newCell[1];
+                this.x = newX;
+                this.y = newY;
+                matrix[this.y][this.x] = 4;
+            }
             matrix[this.y][this.x] = 0;
             var newX = newCell[0];
             var newY = newCell[1];
@@ -456,6 +482,7 @@ class PredatorEaterEater extends creatures{
         var newCell = random(cells);
         if (newCell){
             this.energy++;
+            this.energy++;
             matrix[this.y][this.x] = 0;
             var newX = newCell[0];
             var newY = newCell[1];
@@ -484,7 +511,12 @@ class PredatorEaterEater extends creatures{
             var Pr = new PredatorEaterEater(newX, newY, this.index);
             predatorEaterEaterArr.push(Pr);
             matrix[newY][newX] = 4;
-            this.energy = 5;
+            if(season == 0 || weather == 0){
+                this.energy = 2;
+            }
+            else{
+                this.energy = 5;
+            }
         }
         else if (this.energy <= 0){
             this.die()
@@ -613,12 +645,13 @@ var predatorEaterEaterArr = [];
 var predatorEaterEaterEaterArr = [];
 var season = 0;
 var weather = 0;
+
 function setup(){
-    frameRate(20);
+    frameRate(30);
     
     background('#acacac');
-    for(var y=0;y<matrix.length;y++){
-        for (var x=0;x<matrix[y].length;x++){
+    for(var y = 0; y < matrix.length; y++){
+        for (var x = 0; x < matrix[y].length; x++){
             if (matrix[y][x] == 1) {
                 var grass=new Grass(x,y)
                 grassArr.push(grass)
@@ -640,8 +673,8 @@ function setup(){
                 predatorEaterEaterArr.push(predEE);
             }
             else if (matrix[y][x] == 6){
-                var predEE = new PredatorEaterEaterEater(x,y)
-                predatorEaterEaterEaterArr.push(predEE);
+                var predEEE = new PredatorEaterEaterEater(x,y)
+                predatorEaterEaterEaterArr.push(predEEE);
             }
         }  
     }
