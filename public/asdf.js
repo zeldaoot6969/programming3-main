@@ -284,7 +284,7 @@ class Predator extends creatures{
         this.getNewCoordinates();
         var cells = this.chooseCell(0);
         var newCell = random(cells);
-        if ((newCell) && (this.energy >= 8)){
+        if ((newCell) && (this.energy >= 4)){
             var newX = newCell[0];
             var newY = newCell[1];
             var Pr = new Predator(newX, newY, this.index);
@@ -604,7 +604,7 @@ class PredatorEaterEaterEater extends creatures{
     }
 }
 
-var side = 120;
+var side = 30;
 var grassArr = [];
 var grassEaterArray = [];
 var predatorArr = [];
@@ -612,8 +612,9 @@ var predatorEaterArr = [];
 var predatorEaterEaterArr = [];
 var predatorEaterEaterEaterArr = [];
 var season = 0;
+var weather = 0;
 function setup(){
-    frameRate(60);
+    frameRate(20);
     
     background('#acacac');
     for(var y=0;y<matrix.length;y++){
@@ -654,13 +655,16 @@ var predatorEaterNum
 var predatorEaterEaterNum
 var predatorEaterEaterEaterNum
 
-
+var counts = []
 
 function draw() {
     for (var y = 0; y < matrix.length; y++) {
         for (var x = 0; x < matrix[y].length; x++) {
-            if (matrix[y][x] == 1) {
+            if (matrix[y][x] == 1 && weather == 0) {
                 fill("green");
+            }
+            else if (matrix[y][x] == 1 && weather == 1) {
+                fill("darkgreen");
             }
             else if (matrix[y][x] == 0) {
                 fill("#acacac");
@@ -714,16 +718,36 @@ function draw() {
     document.getElementById("predatorEater").innerHTML = predatorEaterNum
     document.getElementById("predatorEaterEater").innerHTML = predatorEaterEaterNum
     document.getElementById("predatorEaterEaterEater").innerHTML = predatorEaterEaterEaterNum
+
+    counts = [grassNum, grassEaterNum, predatorNum, predatorEaterNum, predatorEaterEaterNum, predatorEaterEaterEaterNum]
 }
 
+var seasonShow = document.getElementById("season1")
+var weatherShow = document.getElementById("weather1")
 
 function seasonChange(){
     if(season == 0){
         season = 1
+        seasonShow.innerHTML = "summer"
     }
     else{
         season = 0
+        seasonShow.innerHTML = "winter"
     }
 }
+function weatherChange(){
+    if(weather == 0){
+        weather = 1
+        weatherShow.innerHTML = "rain"
+    }
+    else{
+        weather = 0
+        weatherShow.innerHTML = "sunny"
+    }
+}
+
 var seasonButton = document.getElementById("season0")
-seasonButton.addEventListener("click", seasonChange )
+seasonButton.addEventListener("click", seasonChange)
+
+var weatherButton = document.getElementById("weather0")
+weatherButton.addEventListener("click", weatherChange)
